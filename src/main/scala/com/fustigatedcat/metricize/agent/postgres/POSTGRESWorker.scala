@@ -35,7 +35,7 @@ object POSTGRESWorker {
       conn.close()
       AgentResponseSuccess(start, end - start, prettyJson(renderJValue(rtn)))
     } catch {
-      case err: Throwable => AgentResponseFailure(start, System.currentTimeMillis() - start, err.getLocalizedMessage)
+      case err: Throwable => AgentResponseFailure(start, System.currentTimeMillis() - start, prettyJson(renderJValue("error" -> err.getLocalizedMessage)))
     }
   }
 
